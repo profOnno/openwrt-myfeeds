@@ -12,3 +12,6 @@ The `sed` part removes the header, `jq` gives a nice output.
 To show the first name of each container.
  `echo -e "GET /containers/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock | sed -e '1,/^\r$/d' |jq '.[] |.Names[0]'`
  
+ Fancy..
+ `echo -e "GET /containers/json HTTP/1.0\r\n" | nc -U /var/run/docker.sock | sed -e '1,/^\r$/d' |jq '.[] |"\(.Names[0]), \(.Status)"'`
+ 
